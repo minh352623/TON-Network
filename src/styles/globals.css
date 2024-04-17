@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button_ton_connect_button button {
+  /* background-color: red; */
+}

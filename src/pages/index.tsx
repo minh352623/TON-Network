@@ -7,10 +7,7 @@ const Home: NextPage = (props) => {
     <div>
       <Head>
         <title> Swapper!</title>
-        <meta
-          name="description"
-          content="A demo site for Remi"
-        />
+        <meta name="description" content="A demo site for Remi" />
       </Head>
       <SolanaPoolStakeView />
     </div>

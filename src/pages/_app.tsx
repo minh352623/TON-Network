@@ -7,28 +7,18 @@ import { ConnectionProvider } from "@solana/wallet-adapter-react";
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import "../styles/App.css";
-
-// set custom RPC server endpoint for the final website
-// const endpoint = "https://explorer-api.devnet.solana.com";
-// const endpoint = "https://explorer-api.mainnet-beta.solana.com";
-
-// const endpoint = "http://127.0.0.1:8899";
-const endpoint = "https://ssc-dao.genesysgo.net";
-
-const WalletProvider = dynamic(
-  () => import("../contexts/ClientWalletProvider"),
-  {
-    ssr: false,
-  }
-);
+import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider>
-        <Component {...pageProps} />
-      </WalletProvider>
-    </ConnectionProvider>
+    // <ConnectionProvider endpoint={endpoint}>
+    //   <WalletProvider>
+    <TonConnectUIProvider manifestUrl="https://minter.ton.org/tonconnect-manifest.json">
+      <Component {...pageProps} />
+    </TonConnectUIProvider>
+
+    //   </WalletProvider>
+    // </ConnectionProvider>
   );
 }
 
