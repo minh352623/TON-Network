@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.11",
     "@coral-xyz/spl-token": "^0.28.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
@@ -33,6 +34,8 @@
     "@tonconnect/ui-react": "^2.0.0",
     "@types/lodash.orderby": "^4.6.6",
     "daisyui": "^1.16.2",
+    "graphql": "^15.8.0",
+    "graphql-ws": "^5.15.0",
     "lodash.orderby": "^4.6.0",
     "next": "12.1.0",
     "next-compose-plugins": "^2.2.1",
@@ -43,7 +46,8 @@
     "react-countdown": "^2.3.2",
     "react-dom": "17.0.2",
     "ton": "^12.1.5",
-    "tonweb": "^0.0.66"
+    "tonweb": "^0.0.66",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/react": "17.0.34",

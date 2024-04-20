@@ -12,6 +12,8 @@ import {
 } from "@tonconnect/ui-react";
 import { useTonAddress } from "@tonconnect/ui-react";
 import TonWeb from "tonweb";
+import { useUserStore } from "store/userStore";
+import { apiRaffles } from "api/raffles";
 
 export const SolanaPoolStakeView: FC = ({}) => {
   const userFriendlyAddress = useTonAddress();
@@ -30,28 +32,16 @@ export const SolanaPoolStakeView: FC = ({}) => {
               <div className="text-sm breadcrumbs">
                 <ul className="text-xl">
                   <li>
-                    <span className="opacity-40">minh352623</span>
+                    <span className="opacity-40">
+                      {"tonraffles".toUpperCase()}
+                    </span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          <Navbar></Navbar>
-
           <div className="flex-none">
             <TonConnectButton className="button_ton_connect_button" />
-          </div>
-        </div>
-
-        <div className="text-center pt-2">
-          <div className="hero min-h-16 pt-4">
-            <div className="text-center hero-content">
-              <div className="max-w-lg">
-                <h1 className="mb-5 text-5xl">
-                  TON <SolanaLogo />
-                </h1>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -82,25 +72,16 @@ type NetStaking = {
 const NetStaking: FC<NetStaking> = ({}) => {
   const [tonconnect] = useTonConnectUI();
   const [amount, setAmount] = useState<string | number>(0);
+  const token = useUserStore((state: any) => state.token);
+
   const sendTON = async () => {
     try {
-      const payload = beginCell()
-        .storeUint(0x50c081d1, 32)
-        .storeUint(0, 64)
-        .storeAddress(
-          Address.parse("EQARDniUyL39Rw9-yfJs9f7rrHhY8lT-yJiVCqIjtMzT8Q5n")
-        )
-        .storeBit(true)
-        .storeCoins(TonWeb.utils.toNano("0.375"))
-        .storeBit(false)
-        .endCell();
       const tx: SendTransactionRequest = {
         validUntil: Date.now() + 5 * 60 * 1000,
         messages: [
           {
             address: "EQARDniUyL39Rw9-yfJs9f7rrHhY8lT-yJiVCqIjtMzT8Q5n",
             amount: (Number(amount) * 10 ** 9).toFixed(0),
-            payload: payload.toBoc().toString("base64"),
           },
         ],
       };
@@ -111,6 +92,11 @@ const NetStaking: FC<NetStaking> = ({}) => {
       console.log("🚀 ~ sendTON ~ err:", err);
     }
   };
+
+  const testCall = async () => {
+    const data = await apiRaffles.testClientSend();
+    console.log("🚀 ~ testCall ~ data:", data);
+  };
   return (
     <div
       style={{ minWidth: 240 }}
@@ -118,7 +104,7 @@ const NetStaking: FC<NetStaking> = ({}) => {
     >
       <div className="flex gap-3">
         <div className="flex flex-1 flex-col gap-2">
-          <span>Amount</span>
+          <span>Amount </span>
           <input
             onChange={(e) => setAmount(e.target.value)}
             name="amount"
@@ -129,7 +115,7 @@ const NetStaking: FC<NetStaking> = ({}) => {
         </div>
       </div>
       <button
-        onClick={sendTON}
+        onClick={testCall}
         className="btn btn-primary rounded-full normal-case	w-full"
       >
         Send Transaction
