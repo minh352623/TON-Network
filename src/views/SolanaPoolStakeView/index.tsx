@@ -80,7 +80,7 @@ const NetStaking: FC<NetStaking> = ({}) => {
         validUntil: Date.now() + 5 * 60 * 1000,
         messages: [
           {
-            address: "EQARDniUyL39Rw9-yfJs9f7rrHhY8lT-yJiVCqIjtMzT8Q5n",
+            address: "0QCunQgU9UX1mVHEuKT-V6MTFTAoLel2u4HEMOaaKQ5Zzi9X",
             amount: (Number(amount) * 10 ** 9).toFixed(0),
           },
         ],
@@ -115,7 +115,7 @@ const NetStaking: FC<NetStaking> = ({}) => {
         </div>
       </div>
       <button
-        onClick={testCall}
+        onClick={sendTON}
         className="btn btn-primary rounded-full normal-case	w-full"
       >
         Send Transaction
