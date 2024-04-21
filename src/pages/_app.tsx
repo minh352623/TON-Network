@@ -8,15 +8,24 @@ import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import "../styles/App.css";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     // <ConnectionProvider endpoint={endpoint}>
     //   <WalletProvider>
-    <TonConnectUIProvider manifestUrl="https://minter.ton.org/tonconnect-manifest.json">
-      <Component {...pageProps} />
-    </TonConnectUIProvider>
-
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <TonConnectUIProvider manifestUrl="https://minter.ton.org/tonconnect-manifest.json">
+        <Component {...pageProps} />
+      </TonConnectUIProvider>
+    </ThemeProvider>
     //   </WalletProvider>
     // </ConnectionProvider>
   );

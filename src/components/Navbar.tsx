@@ -4,7 +4,6 @@ import React from "react";
 
 const Navbar = () => {
   const router = useRouter();
-
   return (
     <div>
       <ul className="flex gap-3 font-bold">

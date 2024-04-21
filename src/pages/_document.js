@@ -5,10 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta
-            name="description"
-            content="This site will fly high 🦤"
-          />
+          <meta name="description" content="This site will fly high 🦤" />
           <link rel="icon" href="/favicon.ico" />
 
           <link
@@ -45,8 +42,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id="integrated-terminal"></div>
-          <script src='https://terminal.jup.ag/main-v2.js' />
         </body>
       </Html>
     );
